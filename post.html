@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Artykuł · Piotr Bąk</title>
+<meta id="meta-description" name="description" content="Artykuł na blogu Piotra Bąka.">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta id="og-title" property="og:title" content="Artykuł · Piotr Bąk">
+<meta id="og-description" property="og:description" content="Artykuł na blogu Piotra Bąka.">
+<meta id="og-image" property="og:image" content="">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta id="twitter-title" name="twitter:title" content="Artykuł · Piotr Bąk">
+<meta id="twitter-description" name="twitter:description" content="Artykuł na blogu Piotra Bąka.">
+<meta id="twitter-image" name="twitter:image" content="">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Blog Reader Specific Styles */
+  .post-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-3);
+    margin-bottom: var(--s-6);
+  }
+  .post-header .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--fg-3);
+    border: 1px solid var(--line-1);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 8px 16px;
+    border-radius: var(--r-pill);
+    transition: all var(--dur-fast) var(--ease-out);
+    margin-bottom: var(--s-4);
+    text-decoration: none;
+  }
+  .post-header .btn-back:hover {
+    color: var(--fg-1);
+    border-color: var(--line-2);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-weight: 600;
+  }
+  .post-header h1 {
+    margin: 0;
+    font-size: clamp(32px, 5vw, 44px);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-tight);
+    text-align: left;
+  }
+  
+  .post-hero-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--r-xl);
+    border: 1px solid var(--line-2);
+    margin-bottom: var(--s-8);
+  }
+  
+  /* Styled article body formatting */
+  .post-body {
+    font-size: var(--text-base);
+    line-height: var(--lh-base);
+    color: var(--fg-2);
+  }
+  .post-body p, .post-body span, .post-body li {
+    font-family: var(--font-body) !important;
+  }
+  .post-body p {
+    margin: 0 0 var(--s-5);
+    color: var(--fg-2);
+    text-wrap: pretty;
+  }
+  .post-body h2, .post-body h3, .post-body h4 {
+    color: var(--fg-1);
+    margin: var(--s-8) 0 var(--s-4);
+    font-family: var(--font-display) !important;
+    letter-spacing: var(--tracking-snug);
+  }
+  .post-body h2 { font-size: var(--text-xl); line-height: var(--lh-xl); }
+  .post-body h3 { font-size: var(--text-lg); line-height: var(--lh-lg); }
+  
+  .post-body ul, .post-body ol {
+    margin: 0 0 var(--s-6) var(--s-5);
+    padding: 0;
+  }
+  .post-body li {
+    margin-bottom: var(--s-2);
+    color: var(--fg-2);
+  }
+  .post-body a {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+  .post-body a:hover {
+    opacity: 0.85;
+  }
+  .post-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--r-md);
+    margin: var(--s-6) 0;
+    border: 1px solid var(--line-1);
+  }
+  .post-body blockquote {
+    margin: var(--s-6) 0;
+    padding: var(--s-4) var(--s-6);
+    border-left: 4px solid var(--accent);
+    background: rgba(255, 107, 53, 0.04);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .post-body blockquote p {
+    margin: 0;
+    font-style: italic;
+    color: var(--fg-1);
+  }
+  .post-body hr {
+    border: 0;
+    height: 1px;
+    background: var(--line-1);
+    margin: var(--s-8) 0;
+  }
+  
+  /* Fallback template elements cleanup */
+  .post-body * {
+    max-width: 100% !important;
+    position: static !important;
+  }
+  .post-body *:not(iframe) {
+    height: auto !important;
+  }
+  
+  .post-footer {
+    margin-top: var(--s-10);
+    padding-top: var(--s-6);
+    border-top: 1px solid var(--line-1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .error-container {
+    text-align: center;
+    padding: var(--s-10) 0;
+  }
+  .error-container h2 {
+    margin-bottom: var(--s-4);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Aurora background -->
+  <div class="aurora-bg" aria-hidden="true">
+    <div class="plx" data-depth="14"><div class="blob blob-violet"></div></div>
+    <div class="plx" data-depth="26"><div class="blob blob-magenta"></div></div>
+    <div class="plx" data-depth="40"><div class="blob blob-orange"></div></div>
+    <div class="plx" data-depth="20"><div class="horizon"></div></div>
+  </div>
+
+  <main class="page" data-screen-label="Artykuł">
+    
+    <article id="post-container">
+      <!-- Loader or content gets rendered here via JS -->
+      <div class="error-container">
+        <h2>Ładowanie artykułu...</h2>
+        <p>Proszę czekać, wczytujemy treść.</p>
+      </div>
+    </article>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="rise d4">
+      <div class="band"></div>
+      <nav class="footer-socials" aria-label="Social media">
+        <a href="https://www.facebook.com/piotrisbak" target="_blank" rel="noopener" aria-label="Facebook"><svg data-lucide="facebook"></svg></a>
+        <a href="https://www.linkedin.com/in/piotr-bak/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg data-lucide="linkedin"></svg></a>
+        <a href="https://www.youtube.com/@generalistaai" target="_blank" rel="noopener" aria-label="YouTube"><svg data-lucide="youtube"></svg></a>
+        <a href="mailto:piotrisbak@gmail.com" aria-label="E-mail"><svg data-lucide="mail"></svg></a>
+      </nav>
+      <p>© 2026 Piotr Bąk · piotrbak.bio · Solo Founder</p>
+    </footer>
+
+  </main>
+
+  <!-- Load database and scripts -->
+  <script src="js/blog-posts.js"></script>
+  <script src="js/post.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

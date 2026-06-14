@@ -1,0 +1,321 @@
+/* ============================================================
+   AI Ready — Design Tokens & Semantic Type Styles
+   Author: Piotr Bąk  ·  piotrbak.bio
+   Primary surface is DARK. The "Aurora" spectrum (black → violet →
+   magenta → orange) is the signature of the whole brand.
+   ============================================================ */
+
+/* ---------- Webfonts (Google Fonts) ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  /* ============================================================
+     COLOR — Brand spectrum (sampled from the Aurora gradient)
+     ============================================================ */
+  --ink:            #0E0E10;
+  --ink-2:          #19191B;
+  --ink-3:          #26262A;
+  --ink-4:          #34343A;
+
+  --violet-deep:    #2B1545;
+  --violet:         #6B1DC9;
+  --magenta:        #C8338A;
+  --pink:           #E91E63;
+  --orange:         #FF6B35;
+  --orange-warm:    #F25C30;
+
+  /* The signature Aurora gradient — black → violet → magenta → orange.
+     Use as background-image directly. */
+  --aurora:
+    radial-gradient(
+      120% 90% at 50% 110%,
+      var(--orange-warm) 0%,
+      var(--pink) 22%,
+      var(--magenta) 42%,
+      var(--violet) 62%,
+      var(--violet-deep) 80%,
+      var(--ink) 100%
+    );
+
+  /* A linear single-band slice for accents (use on chips, dividers). */
+  --aurora-band:
+    linear-gradient(90deg,
+      var(--violet) 0%,
+      var(--magenta) 35%,
+      var(--pink) 65%,
+      var(--orange) 100%
+    );
+
+  /* Intensity of the animated background field (0.2 – 1.4). */
+  --aurora-intensity: 1.05;
+
+  /* ============================================================
+     SEMANTIC COLOR — DARK (default)
+     ============================================================ */
+  --bg:             var(--ink);
+  --bg-elev-1:      var(--ink-2);
+  --bg-elev-2:      var(--ink-3);
+
+  --fg-1:           #FFFFFF;                 /* primary text */
+  --fg-2:           rgba(255,255,255,.72);   /* secondary text */
+  --fg-3:           rgba(255,255,255,.50);   /* tertiary / captions */
+  --fg-4:           rgba(255,255,255,.32);   /* placeholder / disabled */
+
+  --line-1:         rgba(255,255,255,.08);   /* hairline divider */
+  --line-2:         rgba(255,255,255,.16);   /* hover / focus rest */
+
+  --accent:         var(--orange);            /* primary action */
+  --accent-2:       var(--magenta);           /* secondary action */
+  --link:           var(--orange);
+
+  /* status — kept on-palette */
+  --success:        #2ED27A;
+  --warning:        #FFB020;
+  --danger:         var(--pink);
+
+  /* ============================================================
+     TYPOGRAPHY — fonts
+     ============================================================ */
+  --font-display:   'Sora', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body:      'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:      'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* TYPOGRAPHY — sizes (a 1.25 modular scale, anchored at 16) */
+  --text-xs:        12px;
+  --text-sm:        14px;
+  --text-base:      16px;
+  --text-md:        18px;
+  --text-lg:        22px;
+  --text-xl:        28px;
+  --text-2xl:       36px;
+  --text-3xl:       48px;
+  --text-4xl:       64px;
+  --text-5xl:       88px;
+  --text-display:   120px;
+
+  /* line heights, paired with the sizes above */
+  --lh-xs:  1.4;  /* @kind other */
+  --lh-sm:  1.45; /* @kind other */
+  --lh-base:1.55; /* @kind other */
+  --lh-md:  1.55; /* @kind other */
+  --lh-lg:  1.4;  /* @kind other */
+  --lh-xl:  1.25; /* @kind other */
+  --lh-2xl: 1.15; /* @kind other */
+  --lh-3xl: 1.05; /* @kind other */
+  --lh-4xl: 1.0;  /* @kind other */
+  --lh-5xl: 0.95; /* @kind other */
+  --lh-display:0.92; /* @kind other */
+
+  --tracking-tight: -0.02em; /* @kind other */
+  --tracking-snug:  -0.01em; /* @kind other */
+  --tracking-normal: 0;      /* @kind other */
+  --tracking-wide:  0.02em;  /* @kind other */
+
+  /* ============================================================
+     SPACING — 4 px base scale
+     ============================================================ */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  20px;
+  --s-6:  24px;
+  --s-8:  32px;
+  --s-10: 40px;
+  --s-14: 56px;
+  --s-18: 72px;
+  --s-24: 96px;
+  --s-32: 128px;
+
+  /* ============================================================
+     RADII
+     ============================================================ */
+  --r-xs:   6px;
+  --r-sm:   10px;
+  --r-md:   14px;
+  --r-lg:   20px;
+  --r-xl:   28px;
+  --r-2xl:  40px;
+  --r-pill: 999px;
+
+  /* ============================================================
+     SHADOWS — luminous, not papery
+     ============================================================ */
+  --shadow-1: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-2: 0 12px 32px -8px rgba(0,0,0,.55);
+  --shadow-3: 0 32px 64px -16px rgba(0,0,0,.7);
+
+  /* the signature CTA glow — hot pink + orange under the element */
+  --glow-aurora:
+    0 24px 80px -20px rgba(255,107,53,.45),
+    0 8px 24px -8px rgba(200,51,138,.35);
+  --glow-aurora-strong:
+    0 32px 96px -16px rgba(255,107,53,.65),
+    0 12px 32px -6px rgba(233,30,99,.55);
+
+  /* focus halo */
+  --ring-focus: 0 0 0 2px var(--orange), 0 0 0 6px rgba(200,51,138,.35);
+
+  /* ============================================================
+     MOTION
+     ============================================================ */
+  --ease-out:    cubic-bezier(0.2, 0.7, 0.1, 1);  /* @kind other */
+  --ease-in:     cubic-bezier(0.6, 0, 0.9, 0.4);  /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);  /* @kind other */
+
+  --dur-fast:   120ms;   /* @kind other */
+  --dur-base:   200ms;   /* @kind other */
+  --dur-slow:   320ms;   /* @kind other */
+  --dur-aurora: 14000ms; /* @kind other */
+
+  /* ============================================================
+     LAYOUT
+     ============================================================ */
+  --container-max: 1200px;
+  --column-prose:  640px;
+  --header-h:      64px;
+  --header-h-sm:   56px;
+}
+
+/* ============================================================
+   SEMANTIC TYPE STYLES
+   ============================================================ */
+
+html, body {
+  background: var(--bg);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--lh-base);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.h-display, .display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(56px, 9vw, var(--text-display));
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+  text-wrap: balance;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, var(--text-4xl));
+  line-height: var(--lh-4xl);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, var(--text-3xl));
+  line-height: var(--lh-3xl);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-2xl);
+  line-height: var(--lh-2xl);
+  letter-spacing: var(--tracking-snug);
+}
+h4, .h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  line-height: var(--lh-xl);
+  letter-spacing: var(--tracking-snug);
+}
+h5, .h5 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-lg);
+  line-height: var(--lh-lg);
+}
+
+.body, p {
+  font-size: var(--text-base);
+  line-height: var(--lh-base);
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+.body-lg {
+  font-size: var(--text-md);
+  line-height: var(--lh-md);
+  color: var(--fg-2);
+}
+.body-sm {
+  font-size: var(--text-sm);
+  line-height: var(--lh-sm);
+  color: var(--fg-2);
+}
+.caption {
+  font-size: var(--text-xs);
+  line-height: var(--lh-xs);
+  color: var(--fg-3);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-weight: 600;
+}
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: transparent;
+  background: var(--aurora-band);
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+
+code, .code, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-feature-settings: "calt", "ss02";
+}
+pre, .codeblock {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-md);
+  padding: var(--s-4) var(--s-5);
+  color: var(--fg-1);
+  overflow-x: auto;
+}
+
+a, .link {
+  color: var(--link);
+  text-decoration: none;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+a:hover, .link:hover { opacity: .8; }
+
+/* ============================================================
+   UTILITY — Aurora text gradient
+   ============================================================ */
+.text-aurora {
+  background: var(--aurora-band);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "redirects": [
+    {
+      "source": "/blog",
+      "destination": "/blog.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/post.html?post=:slug",
+      "permanent": true
+    },
+    {
+      "source": "/blob/:slug",
+      "destination": "/post.html?post=:slug",
+      "permanent": true
+    },
+    {
+      "source": "/raport-freelancing-w-polsce-2023",
+      "destination": "/post.html?post=raport-freelancing-w-polsce-2023",
+      "permanent": true
+    },
+    {
+      "source": "/prawnicy-i-ksiegowi-straca-prace-przez-ai-to-tylko-kwestia-czasu%21",
+      "destination": "/post.html?post=prawnicy-i-ksiegowi-straca-prace-przez-ai-to-tylko-kwestia-czasu%21",
+      "permanent": true
+    },
+    {
+      "source": "/moj-produkt-znalazl-sie-na-podium-rankingu-tygodnia-na-radar-premier-%F0%9F%8E%89",
+      "destination": "/post.html?post=moj-produkt-znalazl-sie-na-podium-rankingu-tygodnia-na-radar-premier-%F0%9F%8E%89",
+      "permanent": true
+    },
+    {
+      "source": "/jak-generowac-obrazy-przez-dalle-na-telefonie",
+      "destination": "/post.html?post=jak-generowac-obrazy-przez-dalle-na-telefonie",
+      "permanent": true
+    },
+    {
+      "source": "/prognozy-billa-gates-na-rok-2024",
+      "destination": "/post.html?post=prognozy-billa-gates-na-rok-2024",
+      "permanent": true
+    },
+    {
+      "source": "/8-sposobow-na-zarabianie-pieniedzy-przez-no-code-developera",
+      "destination": "/post.html?post=8-sposobow-na-zarabianie-pieniedzy-przez-no-code-developera",
+      "permanent": true
+    },
+    {
+      "source": "/nocodemakers-program-kohortowy",
+      "destination": "/post.html?post=nocodemakers-program-kohortowy",
+      "permanent": true
+    },
+    {
+      "source": "/nocode-newsletter-nocode-news",
+      "destination": "/post.html?post=nocode-newsletter-nocode-news",
+      "permanent": true
+    },
+    {
+      "source": "/jak-polaczylem-wiedze-z-branzy-sportowej-z-technologia-no-code-i-stworzylem-biznes-generujacy-miliony",
+      "destination": "/post.html?post=jak-polaczylem-wiedze-z-branzy-sportowej-z-technologia-no-code-i-stworzylem-biznes-generujacy-miliony",
+      "permanent": true
+    },
+    {
+      "source": "/bubble-masters-2025-dlaczego-zdecidowalem-sie-wziac-udzial-w-tym-wydarzeniu",
+      "destination": "/post.html?post=bubble-masters-2025-dlaczego-zdecidowalem-sie-wziac-udzial-w-tym-wydarzeniu",
+      "permanent": true
+    },
+    {
+      "source": "/zaproszenie-do-ostatniej-edycji-kultowego-szkolenia-zautomatyzowani-%F0%9F%8E%9F%EF%B8%8F",
+      "destination": "/post.html?post=zaproszenie-do-ostatniej-edycji-kultowego-szkolenia-zautomatyzowani-%F0%9F%8E%9F%EF%B8%8F",
+      "permanent": true
+    },
+    {
+      "source": "/samotny-wilk-moja-droga-jako-solo-founder",
+      "destination": "/post.html?post=samotny-wilk-moja-droga-jako-solo-founder",
+      "permanent": true
+    },
+    {
+      "source": "/no-code--ai-event-3-przyszlosc-startupow-bez-kodowania---zaproszenie-na-wydarzenie-roku-w-gdansku",
+      "destination": "/post.html?post=no-code--ai-event-3-przyszlosc-startupow-bez-kodowania---zaproszenie-na-wydarzenie-roku-w-gdansku",
+      "permanent": true
+    },
+    {
+      "source": "/nocode-lowcode-w-centrum-uwagi",
+      "destination": "/post.html?post=nocode-lowcode-w-centrum-uwagi",
+      "permanent": true
+    },
+    {
+      "source": "/jak-stworzylem-kalkulator-roi-nocode-w-2-godziny-dzieki-ai",
+      "destination": "/post.html?post=jak-stworzylem-kalkulator-roi-nocode-w-2-godziny-dzieki-ai",
+      "permanent": true
+    },
+    {
+      "source": "/od-tradycyjnego-programowania-do-ai-coding-jak-zmienil-sie-sposob-tworzenia-oprogramowania-%281950-2025%29",
+      "destination": "/post.html?post=od-tradycyjnego-programowania-do-ai-coding-jak-zmienil-sie-sposob-tworzenia-oprogramowania-%281950-2025%29",
+      "permanent": true
+    },
+    {
+      "source": "/era-personal-software-dlaczego-przestalem-szukac-gotowych-rozwiazan-i-zaczalem-tworzyc-wlasne",
+      "destination": "/post.html?post=era-personal-software-dlaczego-przestalem-szukac-gotowych-rozwiazan-i-zaczalem-tworzyc-wlasne",
+      "permanent": true
+    },
+    {
+      "source": "/3-prognozy-dotyczace-przyszlosci-agentow-ai-w-2025-r-wg-dharmesh-shah-cto-hubspot",
+      "destination": "/post.html?post=3-prognozy-dotyczace-przyszlosci-agentow-ai-w-2025-r-wg-dharmesh-shah-cto-hubspot",
+      "permanent": true
+    },
+    {
+      "source": "/dlaczego-tworcy-no-code-powinni-bardziej-w-siebie-wierzyc-moje-przemyslenia-z-pierwszej-linii-frontu",
+      "destination": "/post.html?post=dlaczego-tworcy-no-code-powinni-bardziej-w-siebie-wierzyc-moje-przemyslenia-z-pierwszej-linii-frontu",
+      "permanent": true
+    },
+    {
+      "source": "/nocode-to-dla-mnie-cos-wiecej-niz-tylko-technologia",
+      "destination": "/post.html?post=nocode-to-dla-mnie-cos-wiecej-niz-tylko-technologia",
+      "permanent": true
+    },
+    {
+      "source": "/ta-malenka-kamera-4k-zamienia-amatora-w-mistrza-filmowania%21-sprawdz-jak-uwiecznilem-wakacje-niemal-jak-profesjonalista",
+      "destination": "/post.html?post=ta-malenka-kamera-4k-zamienia-amatora-w-mistrza-filmowania%21-sprawdz-jak-uwiecznilem-wakacje-niemal-jak-profesjonalista",
+      "permanent": true
+    },
+    {
+      "source": "/roboty-wysylaja-za-mnie-faktury-do-ksiegowej",
+      "destination": "/post.html?post=roboty-wysylaja-za-mnie-faktury-do-ksiegowej",
+      "permanent": true
+    },
+    {
+      "source": "/12-najwazniejszych-powodow-dla-ktorych-startupy-upadaja",
+      "destination": "/post.html?post=12-najwazniejszych-powodow-dla-ktorych-startupy-upadaja",
+      "permanent": true
+    },
+    {
+      "source": "/nadchodzi-era-alokacji-a-wraz-z-nia-zmiany-na-rynku-pracy-wszystko-przez-ai-i-nowe-technologie",
+      "destination": "/post.html?post=nadchodzi-era-alokacji-a-wraz-z-nia-zmiany-na-rynku-pracy-wszystko-przez-ai-i-nowe-technologie",
+      "permanent": true
+    },
+    {
+      "source": "/witaj-w-erze-jednoosobowych-firm-wartych-miliardy-dolarow%21",
+      "destination": "/post.html?post=witaj-w-erze-jednoosobowych-firm-wartych-miliardy-dolarow%21",
+      "permanent": true
+    },
+    {
+      "source": "/poznaj-arcf-system-czyli-zautomatyzowany-system-dystrybucji-tresci-zasilany-ai",
+      "destination": "/post.html?post=poznaj-arcf-system-czyli-zautomatyzowany-system-dystrybucji-tresci-zasilany-ai",
+      "permanent": true
+    },
+    {
+      "source": "/easytools-20---zobacz-nowa-odslone-platformy-do-sprzedazy-produktow-cyfrowych",
+      "destination": "/post.html?post=easytools-20---zobacz-nowa-odslone-platformy-do-sprzedazy-produktow-cyfrowych",
+      "permanent": true
+    },
+    {
+      "source": "/no-code-kompleksowy-przewodnik-po-narzedziach-zaletach-i-zastosowaniach",
+      "destination": "/post.html?post=no-code-kompleksowy-przewodnik-po-narzedziach-zaletach-i-zastosowaniach",
+      "permanent": true
+    },
+    {
+      "source": "/zaproszenie-na-no-code-days-2024-odbierz-tansze-bilety%21",
+      "destination": "/post.html?post=zaproszenie-na-no-code-days-2024-odbierz-tansze-bilety%21",
+      "permanent": true
+    },
+    {
+      "source": "/softr-integruje-sie-z-notion-co-wplywa-na-zmiane-cennika-dokad-zmierza-softr",
+      "destination": "/post.html?post=softr-integruje-sie-z-notion-co-wplywa-na-zmiane-cennika-dokad-zmierza-softr",
+      "permanent": true
+    },
+    {
+      "source": "/bye-bye-majorka-po-prawie-trzech-tygodniach-urlopu-czas-wracac-do-pracy",
+      "destination": "/post.html?post=bye-bye-majorka-po-prawie-trzech-tygodniach-urlopu-czas-wracac-do-pracy",
+      "permanent": true
+    },
+    {
+      "source": "/sztuczna-inteligencja-stworzyla-juz-tyle-zdjec-ile-fotografowie-wykonali-w-ciagu-150-lat%21-garsc-informacji-ktore-moga-przerazic",
+      "destination": "/post.html?post=sztuczna-inteligencja-stworzyla-juz-tyle-zdjec-ile-fotografowie-wykonali-w-ciagu-150-lat%21-garsc-informacji-ktore-moga-przerazic",
+      "permanent": true
+    },
+    {
+      "source": "/nocode-news-czyta-juz-1766-osob%21",
+      "destination": "/post.html?post=nocode-news-czyta-juz-1766-osob%21",
+      "permanent": true
+    },
+    {
+      "source": "/ii-edycja-eventu-nocode-poland",
+      "destination": "/post.html?post=ii-edycja-eventu-nocode-poland",
+      "permanent": true
+    },
+    {
+      "source": "/airtable-prezentuje-cobuilder-czyli-najszybszy-sposob-na-tworzenie-aplikacji-bez-kodowania",
+      "destination": "/post.html?post=airtable-prezentuje-cobuilder-czyli-najszybszy-sposob-na-tworzenie-aplikacji-bez-kodowania",
+      "permanent": true
+    }
+  ]
+}
