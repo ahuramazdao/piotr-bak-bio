@@ -17,7 +17,10 @@ window.renderIcons = function () {
     'send': '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',
     'chevron-down': '<path d="m6 9 6 6 6-6"/>',
     'search': '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
-    'arrow-left': '<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>'
+    'arrow-left': '<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>',
+    'zoom-in': '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>',
+    'download': '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+    'x': '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'
   };
   document.querySelectorAll('svg[data-lucide]').forEach(function (svg) {
     const glyph = ICONS[svg.getAttribute('data-lucide')];
@@ -227,4 +230,40 @@ window.renderIcons();
       });
     }
   });
+
+  /* ---------- 7) Certificate Dialog ---------- */
+  const certDialog = document.getElementById('cert-dialog');
+  const openCertBtn = document.getElementById('open-cert-btn');
+  const previewCertTrigger = document.getElementById('preview-cert-trigger');
+  const closeCertBtn = document.getElementById('close-cert-dialog-btn');
+
+  if (certDialog) {
+    const openDialog = () => {
+      certDialog.showModal();
+      if (typeof window.renderIcons === 'function') {
+        window.renderIcons();
+      }
+    };
+
+    if (openCertBtn) openCertBtn.addEventListener('click', openDialog);
+    if (previewCertTrigger) previewCertTrigger.addEventListener('click', openDialog);
+    if (closeCertBtn) closeCertBtn.addEventListener('click', () => certDialog.close());
+
+    // Fallback for browsers without closedby support (like Safari)
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      certDialog.addEventListener('click', (event) => {
+        if (event.target !== certDialog) return;
+        const rect = certDialog.getBoundingClientRect();
+        const isDialogContent = (
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width
+        );
+        if (!isDialogContent) {
+          certDialog.close();
+        }
+      });
+    }
+  }
 })();

@@ -169,6 +169,57 @@
       </div>
     </section>
 
+    <!-- ============ CERTIFICATE ============ -->
+    <section class="section rise d4" data-screen-label="Certyfikat">
+      <p class="caption">Certyfikacja</p>
+      <div class="card-certificate">
+        <div class="cert-info">
+          <span class="cert-badge">🎓 Google & SGH</span>
+          <h3>Sztuczna Inteligencja w Biznesie</h3>
+          <p>Oficjalny certyfikat ukończenia pięciotygodniowego programu szkoleniowego <strong>Google Umiejętności Jutra AI</strong>, zrealizowanego we współpracy ze Szkołą Główną Handlową w Warszawie.</p>
+          <div class="cert-details">
+            <div class="cert-detail-item">
+              <span class="detail-label">Organizator</span>
+              <span class="detail-val">Google & SGH</span>
+            </div>
+            <div class="cert-detail-item">
+              <span class="detail-label">Data wydania</span>
+              <span class="detail-val">14 czerwca 2026</span>
+            </div>
+            <div class="cert-detail-item">
+              <span class="detail-label">ID Certyfikatu</span>
+              <span class="detail-val mono">65300bb6...73cbd</span>
+            </div>
+          </div>
+          <div class="cert-actions">
+            <button class="btn-primary" id="open-cert-btn">
+              Powiększ certyfikat <svg data-lucide="zoom-in"></svg>
+            </button>
+            <a href="assets/google-ai-certificate.jpg" download="Certyfikat_Google_AI_Piotr_Bak.jpg" class="btn-secondary">
+              Pobierz JPG <svg data-lucide="download"></svg>
+            </a>
+          </div>
+        </div>
+        <div class="cert-preview-wrapper" id="preview-cert-trigger">
+          <img class="cert-preview-img" src="assets/google-ai-certificate.jpg" alt="Certyfikat Google Umiejętności Jutra AI" width="500" height="350" loading="lazy">
+          <div class="cert-preview-overlay">
+            <svg data-lucide="zoom-in" style="width: 32px; height: 32px;"></svg>
+            <span>Kliknij, aby powiększyć</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICATE DIALOG ============ -->
+    <dialog id="cert-dialog" closedby="any" aria-label="Certyfikat Google Umiejętności Jutra AI">
+      <div class="dialog-content-wrapper">
+        <button id="close-cert-dialog-btn" class="dialog-close-btn" aria-label="Zamknij">
+          <svg data-lucide="x"></svg>
+        </button>
+        <img class="dialog-full-img" src="assets/google-ai-certificate.jpg" alt="Certyfikat Google Umiejętności Jutra AI w pełnej rozdzielczości">
+      </div>
+    </dialog>
+
     <!-- ============ CONTACT ============ -->
     <section class="section rise d4" data-screen-label="Kontakt">
       <p class="caption">Kontakt</p>
