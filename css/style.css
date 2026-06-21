@@ -135,23 +135,13 @@ body.motion-off .horizon { animation: none; }
   position: relative;
   transition: max-height var(--dur-slow) var(--ease-out);
   text-wrap: pretty;
+  -webkit-mask-image: linear-gradient(to bottom, black 30px, transparent 84px);
+  mask-image: linear-gradient(to bottom, black 30px, transparent 84px);
 }
-.hero .intro::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 44px;
-  background: linear-gradient(to bottom, transparent, var(--bg));
-  pointer-events: none;
-  transition: opacity var(--dur-base) var(--ease-out);
-}
-.intro-wrapper.expanded .hero .intro {
+.intro-wrapper.expanded .intro {
   max-height: 500px;
-}
-.intro-wrapper.expanded .hero .intro::after {
-  opacity: 0;
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 .intro-toggle {
   background: transparent;
@@ -177,14 +167,40 @@ body.motion-off .horizon { animation: none; }
 .intro-wrapper.expanded .intro-toggle svg {
   transform: rotate(180deg);
 }
-.ala {
-  display: flex; gap: var(--s-2); flex-wrap: wrap; justify-content: center;
+.ala-tags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  margin-top: var(--s-2);
+  margin-bottom: var(--s-3);
+  max-width: 650px;
+  width: 100%;
 }
-.ala span {
-  font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600;
-  letter-spacing: .04em; color: var(--fg-2);
-  padding: 6px 12px; border-radius: var(--r-xs);
-  border: 1px solid var(--line-1); background: rgba(255,255,255,.03);
+.ala-group {
+  display: flex;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ala-separator {
+  color: var(--fg-3);
+  font-family: var(--font-mono);
+  font-weight: 300;
+  font-size: var(--text-md);
+  user-select: none;
+}
+.ala-group span {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--fg-2);
+  padding: 6px 12px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--line-1);
+  background: rgba(255,255,255,.03);
 }
 
 .socials { display: flex; gap: var(--s-3); justify-content: center; }
