@@ -117,9 +117,65 @@ body.motion-off .horizon { animation: none; }
 }
 .hero h1 { margin: 0; font-size: clamp(38px, 7vw, 56px); }
 .hero .eyebrow { margin: 0; }
+.intro-wrapper {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .hero .intro {
-  margin: 0; max-width: 520px;
-  font-size: var(--text-md); line-height: var(--lh-md); color: var(--fg-2);
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: var(--lh-md);
+  color: var(--fg-2);
+  max-height: 84px; /* ~3 lines of text */
+  overflow: hidden;
+  position: relative;
+  transition: max-height var(--dur-slow) var(--ease-out);
+  text-wrap: pretty;
+}
+.hero .intro::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 44px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.intro-wrapper.expanded .hero .intro {
+  max-height: 500px;
+}
+.intro-wrapper.expanded .hero .intro::after {
+  opacity: 0;
+}
+.intro-toggle {
+  background: transparent;
+  border: none;
+  color: var(--fg-3);
+  cursor: pointer;
+  padding: var(--s-1) var(--s-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--dur-fast) var(--ease-out);
+  margin-top: var(--s-1);
+}
+.intro-toggle:hover {
+  color: var(--fg-1);
+  transform: translateY(2px);
+}
+.intro-toggle svg {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.intro-wrapper.expanded .intro-toggle svg {
+  transform: rotate(180deg);
 }
 .ala {
   display: flex; gap: var(--s-2); flex-wrap: wrap; justify-content: center;

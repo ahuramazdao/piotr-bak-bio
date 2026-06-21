@@ -266,4 +266,15 @@ window.renderIcons();
       });
     }
   }
+
+  /* ---------- 8) Hero Intro Bio Toggle ---------- */
+  const introWrapper = document.querySelector('.intro-wrapper');
+  const introToggle = document.querySelector('.intro-toggle');
+  if (introWrapper && introToggle) {
+    introToggle.addEventListener('click', function () {
+      const isExpanded = introWrapper.classList.toggle('expanded');
+      introToggle.setAttribute('aria-expanded', isExpanded);
+      introToggle.setAttribute('aria-label', isExpanded ? 'Zwiń opis' : 'Rozwiń opis');
+    });
+  }
 })();
