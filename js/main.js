@@ -277,4 +277,46 @@ window.renderIcons();
       introToggle.setAttribute('aria-label', isExpanded ? 'Zwiń opis' : 'Rozwiń opis');
     });
   }
+
+  /* ---------- 9) Raport Scroll Animation ---------- */
+  const chartLine = document.getElementById('chartLine');
+  const chartArea = document.getElementById('chartArea');
+  const chartDots = document.getElementById('chartDots');
+
+  if (chartLine && typeof gsap !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const pathLength = 630;
+    
+    gsap.set(chartLine, {
+      strokeDasharray: pathLength,
+      strokeDashoffset: pathLength
+    });
+    
+    gsap.set([chartArea, chartDots], {
+      opacity: 0
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".card-raport",
+        start: "top 85%",
+        end: "bottom 55%",
+        scrub: 1.2
+      }
+    });
+
+    tl.to(chartLine, {
+      strokeDashoffset: 0,
+      ease: "none"
+    })
+    .to(chartArea, {
+      opacity: 1,
+      ease: "power1.inOut"
+    }, 0)
+    .to(chartDots, {
+      opacity: 1,
+      ease: "power1.inOut"
+    }, 0.2);
+  }
 })();

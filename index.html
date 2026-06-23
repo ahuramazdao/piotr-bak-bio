@@ -149,6 +149,64 @@
       </div>
     </section>
 
+    <!-- ============ RAPORT ============ -->
+    <section class="section rise d4" data-screen-label="Raport">
+      <p class="caption">Raport</p>
+      <div class="card-raport">
+        <!-- Vector chart in background -->
+        <svg class="card-raport-bg" viewBox="0 0 600 350" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(255, 68, 68, 0.25)" />
+              <stop offset="100%" stop-color="rgba(255, 68, 68, 0.0)" />
+            </linearGradient>
+            <filter id="bgGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Area under the curve -->
+          <path id="chartArea" d="M 30,60 L 120,80 L 210,140 L 300,250 L 390,290 L 480,310 L 570,320 L 570,350 L 30,350 Z" fill="url(#chartGrad)" />
+          
+          <!-- Falling trend line -->
+          <path id="chartLine" d="M 30,60 L 120,80 L 210,140 L 300,250 L 390,290 L 480,310 L 570,320" fill="none" stroke="#FF4444" stroke-width="4" stroke-linecap="round" filter="url(#bgGlow)" />
+          
+          <!-- 7 data points -->
+          <g id="chartDots">
+            <circle cx="30" cy="60" r="5" fill="#FFFFFF" stroke="#FF4444" stroke-width="3" filter="url(#bgGlow)" />
+            <circle cx="120" cy="80" r="5" fill="#FFFFFF" stroke="#FF4444" stroke-width="3" filter="url(#bgGlow)" />
+            <circle cx="210" cy="140" r="5" fill="#FFFFFF" stroke="#FF4444" stroke-width="3" filter="url(#bgGlow)" />
+            <circle cx="300" cy="250" r="5" fill="#FFFFFF" stroke="#FF4444" stroke-width="3" filter="url(#bgGlow)" />
+            <circle cx="390" cy="290" r="5" fill="#FFFFFF" stroke="#FF4444" stroke-width="3" filter="url(#bgGlow)" />
+            <circle cx="480" cy="310" r="5" fill="#FFFFFF" stroke="#FF4444" stroke-width="3" filter="url(#bgGlow)" />
+            <circle cx="570" cy="320" r="5" fill="#FFFFFF" stroke="#FF4444" stroke-width="3" filter="url(#bgGlow)" />
+          </g>
+        </svg>
+
+        <div class="raport-info">
+          <span class="raport-label">PIERWSZY W POLSCE RAPORT: DEMOGRAFIA A PRZYSZŁOŚĆ KLUBÓW SPORTOWYCH</span>
+          <h2>„Pokolenie, którego nie ma”</h2>
+          <p class="raport-lead">Wpływ trwałego spadku liczby ludności i starzenia się społeczeństwa na kulturę fizyczną oraz przyszłość klubów i akademii sportowych w Polsce</p>
+          <p class="raport-desc">Stworzyłem pierwszy w Polsce raport, który łączy dwa zjawiska - spadek liczby urodzeń i starzenie się społeczeństwa - z przyszłością klubów i akademii sportowych. Na twardych danych GUS, Eurostatu i OECD pokazuję, co oba te trendy zrobią z polskim sportem w najbliższych latach - i co możesz zrobić już dziś, zanim zabraknie dzieci na treningu. Tworzę go dla prezesów, działaczy i trenerów klubów, dla założycieli i dyrektorów akademii, a także dla samorządowców odpowiedzialnych za sport.</p>
+          <div class="raport-action">
+            <a href="https://raport.programydlaklubow.pl/" target="_blank" rel="noopener" class="btn-primary btn-raport">
+              Pobierz bezpłatny raport (PDF) <svg data-lucide="arrow-up-right"></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="raport-covers-container">
+          <div class="raport-covers-inner">
+            <img src="assets/okladka-tyl.webp" alt="Tylna okładka raportu" class="cover-img cover-back" loading="lazy">
+            <img src="assets/okladka-A4.webp" alt="Przednia okładka raportu" class="cover-img cover-front" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ NEWSLETTER ============ -->
     <section class="section rise d4" data-screen-label="Newsletter">
       <p class="caption">Newsletter</p>
@@ -352,6 +410,8 @@
 
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js?v=2.0"></script>
 </body>
 </html>
