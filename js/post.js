@@ -10,8 +10,17 @@
     return;
   }
 
-  // Find the post
-  const post = BLOG_POSTS.find(p => p.slug === slug);
+  // Find the post.
+  // Some slugs are stored percent-encoded (e.g. "...osob%21"), but
+  // URLSearchParams.get() already decodes the query value, so a strict
+  // comparison would miss them. Normalise both sides before matching.
+  function decodeSlug(s) {
+    try { return decodeURIComponent(s); } catch (e) { return s; }
+  }
+
+  const decodedSlug = decodeSlug(slug);
+  const post = BLOG_POSTS.find(p => p.slug === slug)
+            || BLOG_POSTS.find(p => decodeSlug(p.slug) === decodedSlug);
 
   if (!post) {
     renderError('Artykuł nie odnaleziony.', 'Przepraszamy, ten wpis nie istnieje lub został przeniesiony.');
