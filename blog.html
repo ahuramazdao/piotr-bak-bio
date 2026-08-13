@@ -16,6 +16,8 @@
 
 <title>Blog · Piotr Bąk</title>
 <meta name="description" content="Przemyślenia, poradniki i analizy ze świata AI, automatyzacji i no-code.">
+<!-- Kept in sync with the current page by js/blog.js -->
+<link id="canonical" rel="canonical" href="https://www.piotrbak.bio/blog.html">
 
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
@@ -174,10 +176,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--s-4);
+    flex-wrap: wrap;
+    gap: var(--s-2);
     margin-top: var(--s-10);
   }
-  .pagination-btn {
+  .pagination-btn,
+  .pagination-num {
     display: inline-flex;
     align-items: center;
     gap: var(--s-2);
@@ -187,23 +191,45 @@
     color: var(--fg-1);
     background: var(--ink-2);
     border: 1px solid var(--line-1);
-    padding: 10px 20px;
     border-radius: var(--r-pill);
     cursor: pointer;
+    text-decoration: none;
     transition: all var(--dur-fast) var(--ease-out);
   }
-  .pagination-btn:hover:not(:disabled) {
+  .pagination-btn { padding: 10px 20px; }
+  .pagination-num {
+    justify-content: center;
+    min-width: 38px;
+    padding: 10px 6px;
+  }
+  .pagination-btn:hover,
+  .pagination-num:hover {
     border-color: rgba(255,255,255,.22);
     background: var(--ink-3);
   }
-  .pagination-btn:disabled {
+  /* Anchors cannot be :disabled, so the edge pages get a class instead. */
+  .pagination-btn.is-disabled {
     opacity: 0.3;
     cursor: not-allowed;
+    pointer-events: none;
+  }
+  .pagination-num.is-current {
+    color: var(--bg-0, #0b0b12);
+    background: var(--fg-1);
+    border-color: var(--fg-1);
+    pointer-events: none;
   }
   .pagination-info {
+    flex-basis: 100%;
+    text-align: center;
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--fg-3);
+  }
+
+  @media (max-width: 560px) {
+    .pagination-num { min-width: 34px; padding: 8px 4px; }
+    .pagination-btn { padding: 8px 14px; }
   }
   
   .no-results {
@@ -269,11 +295,9 @@
       </div>
 
       <!-- ============ PAGINATION ============ -->
-      <div id="pagination" class="pagination">
-        <button id="prev-btn" class="pagination-btn"><svg data-lucide="arrow-left"></svg> Nowsze</button>
-        <span id="page-info" class="pagination-info">Strona 1 z 10</span>
-        <button id="next-btn" class="pagination-btn">Starsze <svg data-lucide="arrow-right"></svg></button>
-      </div>
+      <!-- Real <a href="blog.html?page=N"> links, rendered by js/blog.js so
+           crawlers can reach every page without executing click handlers. -->
+      <nav id="pagination" class="pagination" aria-label="Paginacja wpisów"></nav>
     </section>
 
     <!-- ============ FOOTER ============ -->

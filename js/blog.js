@@ -33,15 +33,27 @@
   // Sort posts descending (newest first)
   BLOG_POSTS.sort((a, b) => parsePlDate(b.date) - parsePlDate(a.date));
 
+  const SITE_ORIGIN = 'https://www.piotrbak.bio';
   const postsPerPage = 10;
-  let currentPage = 1;
   let filteredPosts = [...BLOG_POSTS];
 
   const grid = document.getElementById('blog-grid');
   const searchInput = document.getElementById('search-input');
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const pageInfo = document.getElementById('page-info');
+  const pagination = document.getElementById('pagination');
+
+  // ?page=N is the source of truth for which page is shown, so every page can
+  // be linked, shared and crawled instead of living only in a click handler.
+  function pageFromUrl() {
+    const n = parseInt(new URLSearchParams(window.location.search).get('page'), 10);
+    return Number.isFinite(n) && n > 0 ? n : 1;
+  }
+
+  // Page 1 stays on the bare /blog.html so it never duplicates ?page=1.
+  function pagePath(n) {
+    return n <= 1 ? 'blog.html' : `blog.html?page=${n}`;
+  }
+
+  let currentPage = pageFromUrl();
 
   function renderPosts() {
     if (!grid) return;
@@ -49,9 +61,7 @@
 
     if (filteredPosts.length === 0) {
       grid.innerHTML = '<div class="no-results">Brak wyników pasujących do wyszukiwania.</div>';
-      if (pageInfo) pageInfo.textContent = 'Strona 0 z 0';
-      if (prevBtn) prevBtn.disabled = true;
-      if (nextBtn) nextBtn.disabled = true;
+      if (pagination) pagination.innerHTML = '';
       return;
     }
 
@@ -81,9 +91,8 @@
       grid.appendChild(card);
     });
 
-    if (pageInfo) pageInfo.textContent = `Strona ${currentPage} z ${totalPages}`;
-    if (prevBtn) prevBtn.disabled = currentPage === 1;
-    if (nextBtn) nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+    renderPagination(totalPages);
+    updateHeadLinks(totalPages);
 
     // Trigger Lucide icon rebuild in case new icons are injected
     if (window.ICONS_LOADED) {
@@ -92,11 +101,81 @@
     }
   }
 
+  // Anchors cannot be :disabled, so edge arrows drop their href and get a class.
+  function navLink(page, disabled, html) {
+    const a = document.createElement('a');
+    a.className = 'pagination-btn' + (disabled ? ' is-disabled' : '');
+    a.innerHTML = html;
+    if (disabled) {
+      a.setAttribute('aria-disabled', 'true');
+    } else {
+      a.href = pagePath(page);
+      a.dataset.page = String(page);
+    }
+    return a;
+  }
+
+  // Every page number is a real link, so a crawler reaches page 13 in one hop
+  // from page 1 rather than having to walk thirteen "next" clicks.
+  function renderPagination(totalPages) {
+    if (!pagination) return;
+    pagination.innerHTML = '';
+    if (totalPages <= 1) return;
+
+    const frag = document.createDocumentFragment();
+    frag.appendChild(navLink(currentPage - 1, currentPage === 1,
+      '<svg data-lucide="arrow-left"></svg> Nowsze'));
+
+    for (let n = 1; n <= totalPages; n++) {
+      const a = document.createElement('a');
+      a.className = 'pagination-num' + (n === currentPage ? ' is-current' : '');
+      a.href = pagePath(n);
+      a.dataset.page = String(n);
+      a.textContent = String(n);
+      a.setAttribute('aria-label', `Strona ${n}`);
+      if (n === currentPage) a.setAttribute('aria-current', 'page');
+      frag.appendChild(a);
+    }
+
+    frag.appendChild(navLink(currentPage + 1, currentPage === totalPages,
+      'Starsze <svg data-lucide="arrow-right"></svg>'));
+
+    const info = document.createElement('span');
+    info.className = 'pagination-info';
+    info.textContent = `Strona ${currentPage} z ${totalPages}`;
+    frag.appendChild(info);
+
+    pagination.appendChild(frag);
+  }
+
+  function setHeadLink(id, rel, href) {
+    let el = document.getElementById(id);
+    if (!href) {
+      if (el) el.remove();
+      return;
+    }
+    if (!el) {
+      el = document.createElement('link');
+      el.id = id;
+      el.rel = rel;
+      document.head.appendChild(el);
+    }
+    el.href = href;
+  }
+
+  function updateHeadLinks(totalPages) {
+    setHeadLink('canonical', 'canonical', `${SITE_ORIGIN}/${pagePath(currentPage)}`);
+    setHeadLink('rel-prev', 'prev',
+      currentPage > 1 ? `${SITE_ORIGIN}/${pagePath(currentPage - 1)}` : null);
+    setHeadLink('rel-next', 'next',
+      currentPage < totalPages ? `${SITE_ORIGIN}/${pagePath(currentPage + 1)}` : null);
+  }
+
   // Search filter
   if (searchInput) {
     searchInput.addEventListener('input', function (e) {
       const query = e.target.value.toLowerCase().trim();
-      
+
       filteredPosts = BLOG_POSTS.filter(post => {
         const titleMatch = post.title.toLowerCase().includes(query);
         const shortMatch = post.short.toLowerCase().includes(query);
@@ -104,32 +183,34 @@
         return titleMatch || shortMatch || contentMatch;
       });
 
+      // Filtering restarts at page 1, so drop a stale ?page= from the URL.
       currentPage = 1;
+      if (window.location.search) history.replaceState(null, '', pagePath(1));
       renderPosts();
     });
   }
 
-  // Pagination navigation
-  if (prevBtn) {
-    prevBtn.addEventListener('click', function () {
-      if (currentPage > 1) {
-        currentPage--;
-        renderPosts();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+  // Pagination navigation — the links work on their own; this only upgrades
+  // them to an in-place render so the 1.4 MB post database isn't re-parsed.
+  if (pagination) {
+    pagination.addEventListener('click', function (e) {
+      const link = e.target.closest('a[data-page]');
+      if (!link) return;
+      // Leave modifier-clicks (open in new tab, etc.) to the browser.
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      e.preventDefault();
+      currentPage = parseInt(link.dataset.page, 10);
+      history.pushState({ page: currentPage }, '', pagePath(currentPage));
+      renderPosts();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  if (nextBtn) {
-    nextBtn.addEventListener('click', function () {
-      const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-      if (currentPage < totalPages) {
-        currentPage++;
-        renderPosts();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-  }
+  window.addEventListener('popstate', function () {
+    currentPage = pageFromUrl();
+    renderPosts();
+  });
 
   // Inject Blog Schema.org JSON-LD
   try {

@@ -33,6 +33,14 @@
   const metaDesc = document.getElementById('meta-description');
   if (metaDesc) metaDesc.setAttribute('content', post.short);
 
+  // Canonical is hard-coded to the www origin rather than window.location, so
+  // an apex or /index.html visit can never canonicalise to a competing URL.
+  // The stored (already percent-encoded) slug keeps this identical to sitemap.xml.
+  const canonical = document.getElementById('canonical');
+  if (canonical) {
+    canonical.setAttribute('href', `https://www.piotrbak.bio/post.html?post=${post.slug}`);
+  }
+
   const ogTitle = document.getElementById('og-title');
   if (ogTitle) ogTitle.setAttribute('content', `${post.title} · Piotr Bąk`);
 
