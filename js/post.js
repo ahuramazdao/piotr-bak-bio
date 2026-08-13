@@ -1,12 +1,29 @@
 (function () {
+  // Every absolute URL this file emits (canonical, og:image, JSON-LD) is built
+  // from this constant rather than window.location, so a visit through the apex
+  // never advertises a non-www variant to crawlers and social scrapers.
+  const SITE_ORIGIN = 'https://www.piotrbak.bio';
+
   const urlParams = new URLSearchParams(window.location.search);
   const slug = urlParams.get('post');
   const container = document.getElementById('post-container');
 
   if (!container) return;
 
+  // post.html sets send_page_view:false, so the hit is sent from here — once
+  // the real title and canonical URL are known. Error paths report too, so
+  // broken links still show up in GA4 instead of vanishing.
+  function sendPageView(pageLocation) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'page_view', {
+      page_title: document.title,
+      page_location: pageLocation || window.location.href
+    });
+  }
+
   if (!slug) {
     renderError('Brak parametru artykułu.', 'Nie wskazano, który artykuł wczytać.');
+    sendPageView();
     return;
   }
 
@@ -24,21 +41,24 @@
 
   if (!post) {
     renderError('Artykuł nie odnaleziony.', 'Przepraszamy, ten wpis nie istnieje lub został przeniesiony.');
+    sendPageView();
     return;
   }
 
   // Update Page Title and Meta Tags
   document.title = `${post.title} · Piotr Bąk`;
-  
+
+  // Reported against the canonical URL so GA4 groups each article under one
+  // address regardless of how the visitor arrived (redirect, decoded slug…).
+  sendPageView(`${SITE_ORIGIN}/post.html?post=${post.slug}`);
+
   const metaDesc = document.getElementById('meta-description');
   if (metaDesc) metaDesc.setAttribute('content', post.short);
 
-  // Canonical is hard-coded to the www origin rather than window.location, so
-  // an apex or /index.html visit can never canonicalise to a competing URL.
   // The stored (already percent-encoded) slug keeps this identical to sitemap.xml.
   const canonical = document.getElementById('canonical');
   if (canonical) {
-    canonical.setAttribute('href', `https://www.piotrbak.bio/post.html?post=${post.slug}`);
+    canonical.setAttribute('href', `${SITE_ORIGIN}/post.html?post=${post.slug}`);
   }
 
   const ogTitle = document.getElementById('og-title');
@@ -47,9 +67,8 @@
   const ogDesc = document.getElementById('og-description');
   if (ogDesc) ogDesc.setAttribute('content', post.short);
 
-  const origin = window.location.origin || (window.location.protocol + '//' + window.location.host);
   const thumb = post.thumbnail || 'assets/blog/default.jpg';
-  const fullThumbUrl = origin + '/' + thumb.replace(/^\//, '');
+  const fullThumbUrl = SITE_ORIGIN + '/' + thumb.replace(/^\//, '');
 
   const ogImage = document.getElementById('og-image');
   if (ogImage) ogImage.setAttribute('content', fullThumbUrl);
@@ -97,30 +116,31 @@
 
   try {
     const publishedDate = parsePlDate(post.date).toISOString().split('T')[0];
-    const origin = window.location.origin || (window.location.protocol + '//' + window.location.host);
-    const thumbPath = post.thumbnail || 'assets/blog/default.jpg';
-    
+    const articleUrl = `${SITE_ORIGIN}/post.html?post=${post.slug}`;
+
     const schemaData = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": window.location.href
+        // Matches the canonical, not window.location.href, so the structured
+        // data and the canonical never disagree about which URL this is.
+        "@id": articleUrl
       },
       "headline": post.title,
       "description": post.short,
-      "image": origin + "/" + thumbPath,
+      "image": fullThumbUrl,
       "datePublished": publishedDate,
       "dateModified": publishedDate,
       "author": {
         "@type": "Person",
         "name": "Piotr Bąk",
-        "url": origin
+        "url": SITE_ORIGIN + '/'
       },
       "publisher": {
         "@type": "Person",
         "name": "Piotr Bąk",
-        "url": origin
+        "url": SITE_ORIGIN + '/'
       }
     };
     

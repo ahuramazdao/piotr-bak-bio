@@ -11,7 +11,10 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-M4XMF3ZFGV');
+  // The article title and URL are only known once js/post.js resolves the
+  // slug, so the automatic hit is suppressed here and sent from there instead.
+  // Without this, all 129 posts report as "Artykuł · Piotr Bąk".
+  gtag('config', 'G-M4XMF3ZFGV', { send_page_view: false });
 </script>
 
 <title>Artykuł · Piotr Bąk</title>
@@ -23,13 +26,13 @@
 <meta property="og:type" content="website">
 <meta id="og-title" property="og:title" content="Artykuł · Piotr Bąk">
 <meta id="og-description" property="og:description" content="Artykuł na blogu Piotra Bąka.">
-<meta id="og-image" property="og:image" content="">
+<meta id="og-image" property="og:image" content="https://www.piotrbak.bio/assets/og-preview.png">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta id="twitter-title" name="twitter:title" content="Artykuł · Piotr Bąk">
 <meta id="twitter-description" name="twitter:description" content="Artykuł na blogu Piotra Bąka.">
-<meta id="twitter-image" name="twitter:image" content="">
+<meta id="twitter-image" name="twitter:image" content="https://www.piotrbak.bio/assets/og-preview.png">
 
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/style.css?v=2.0">

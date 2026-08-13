@@ -203,6 +203,14 @@
       currentPage = parseInt(link.dataset.page, 10);
       history.pushState({ page: currentPage }, '', pagePath(currentPage));
       renderPosts();
+      // pushState does not trigger GA4's automatic page_view, so pages 2-13
+      // would otherwise never be measured.
+      if (typeof gtag === 'function') {
+        gtag('event', 'page_view', {
+          page_title: document.title,
+          page_location: `${SITE_ORIGIN}/${pagePath(currentPage)}`
+        });
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
