@@ -61,6 +61,11 @@
     canonical.setAttribute('href', `${SITE_ORIGIN}/post.html?post=${post.slug}`);
   }
 
+  const articleUrl = `${SITE_ORIGIN}/post.html?post=${post.slug}`;
+
+  const ogUrl = document.getElementById('og-url');
+  if (ogUrl) ogUrl.setAttribute('content', articleUrl);
+
   const ogTitle = document.getElementById('og-title');
   if (ogTitle) ogTitle.setAttribute('content', `${post.title} · Piotr Bąk`);
 
@@ -69,6 +74,11 @@
 
   const thumb = post.thumbnail || 'assets/blog/default.jpg';
   const fullThumbUrl = SITE_ORIGIN + '/' + thumb.replace(/^\//, '');
+
+  // Posts may describe their cover image explicitly; the title is only the
+  // fallback, because "<title of the article>" tells a screen-reader user
+  // nothing about what the picture actually shows.
+  const thumbAlt = post.thumbnailAlt || post.title;
 
   const ogImage = document.getElementById('og-image');
   if (ogImage) ogImage.setAttribute('content', fullThumbUrl);
@@ -81,6 +91,12 @@
 
   const twitterImage = document.getElementById('twitter-image');
   if (twitterImage) twitterImage.setAttribute('content', fullThumbUrl);
+
+  const ogImageAlt = document.getElementById('og-image-alt');
+  if (ogImageAlt) ogImageAlt.setAttribute('content', thumbAlt);
+
+  const twitterImageAlt = document.getElementById('twitter-image-alt');
+  if (twitterImageAlt) twitterImageAlt.setAttribute('content', thumbAlt);
 
   // ============ Schema.org JSON-LD & Date Parsing ============
   const MONTHS_PL = {
@@ -114,9 +130,18 @@
     return new Date(dateStr);
   }
 
+  // Formatted from the local date parts, not toISOString(): parsePlDate builds a
+  // local midnight, and in a UTC+N zone that serialises as the previous day.
+  function toIsoDay(d) {
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  }
+
   try {
-    const publishedDate = parsePlDate(post.date).toISOString().split('T')[0];
-    const articleUrl = `${SITE_ORIGIN}/post.html?post=${post.slug}`;
+    const publishedDate = toIsoDay(parsePlDate(post.date));
+
+    const articlePublished = document.getElementById('article-published');
+    if (articlePublished) articlePublished.setAttribute('content', publishedDate);
 
     const schemaData = {
       "@context": "https://schema.org",
@@ -129,7 +154,12 @@
       },
       "headline": post.title,
       "description": post.short,
-      "image": fullThumbUrl,
+      "image": {
+        "@type": "ImageObject",
+        "url": fullThumbUrl,
+        "caption": thumbAlt
+      },
+      "inLanguage": "pl-PL",
       "datePublished": publishedDate,
       "dateModified": publishedDate,
       "author": {
@@ -143,6 +173,29 @@
         "url": SITE_ORIGIN + '/'
       }
     };
+
+    if (Array.isArray(post.keywords) && post.keywords.length) {
+      schemaData.keywords = post.keywords.join(', ');
+    }
+
+    // Posts that summarise or discuss someone else's work declare it, so the
+    // structured data credits the original instead of implying it is ours.
+    if (post.isBasedOn && post.isBasedOn.url) {
+      const source = {
+        "@type": "Article",
+        "url": post.isBasedOn.url,
+        "name": post.isBasedOn.name || post.isBasedOn.url
+      };
+      if (post.isBasedOn.author) {
+        source.author = { "@type": "Person", "name": post.isBasedOn.author };
+      }
+      if (post.isBasedOn.publisher) {
+        source.publisher = { "@type": "Organization", "name": post.isBasedOn.publisher };
+      }
+      schemaData.isBasedOn = source;
+      schemaData.citation = source;
+    }
+
     
     const script = document.createElement('script');
     script.type = 'application/ld+json';
@@ -160,7 +213,7 @@
       <h1>${post.title}</h1>
     </header>
 
-    <img class="post-hero-img rise d1" src="${thumb}" alt="${post.title}">
+    <img class="post-hero-img rise d1" src="${thumb}" alt="${thumbAlt}">
 
     <div class="post-body rise d2">
       ${post.content}

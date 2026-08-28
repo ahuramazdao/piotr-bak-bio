@@ -79,9 +79,12 @@
 
       // Thumbnail check
       const thumb = post.thumbnail || 'assets/blog/default.jpg';
+      // Same rule as js/post.js: describe the picture when the post says what
+      // it shows, and fall back to the title only when it doesn't.
+      const thumbAlt = post.thumbnailAlt || post.title;
 
       card.innerHTML = `
-        <img class="blog-card-img" src="${thumb}" alt="${post.title}" loading="lazy">
+        <img class="blog-card-img" src="${thumb}" alt="${thumbAlt}" loading="lazy">
         <div class="blog-card-body">
           <div class="blog-card-date">${post.date}</div>
           <h3>${post.title}</h3>

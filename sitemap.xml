@@ -2,11 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.piotrbak.bio/</loc>
-    <lastmod>2025-07-03</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://www.piotrbak.bio/blog.html</loc>
-    <lastmod>2025-07-03</lastmod>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://www.piotrbak.bio/post.html?post=bill-gates-era-turbulencji-ai-swiat-nie-ma-planu</loc>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://www.piotrbak.bio/post.html?post=webwave-i-wenet-zapowiadaja-rewolucje</loc>

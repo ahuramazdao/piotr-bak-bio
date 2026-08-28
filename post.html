@@ -23,16 +23,26 @@
 <link id="canonical" rel="canonical" href="https://www.piotrbak.bio/blog.html">
 
 <!-- Open Graph / social preview -->
-<meta property="og:type" content="website">
+<!-- og:type stays "article" here: every URL this template serves is a blog post,
+     and article:* below is only meaningful under that type. js/post.js fills in
+     the per-post values once the slug resolves. -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Piotr Bąk">
+<meta property="og:locale" content="pl_PL">
+<meta id="og-url" property="og:url" content="https://www.piotrbak.bio/blog.html">
 <meta id="og-title" property="og:title" content="Artykuł · Piotr Bąk">
 <meta id="og-description" property="og:description" content="Artykuł na blogu Piotra Bąka.">
 <meta id="og-image" property="og:image" content="https://www.piotrbak.bio/assets/og-preview.png">
+<meta id="og-image-alt" property="og:image:alt" content="Artykuł na blogu Piotra Bąka.">
+<meta id="article-published" property="article:published_time" content="">
+<meta property="article:author" content="Piotr Bąk">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta id="twitter-title" name="twitter:title" content="Artykuł · Piotr Bąk">
 <meta id="twitter-description" name="twitter:description" content="Artykuł na blogu Piotra Bąka.">
 <meta id="twitter-image" name="twitter:image" content="https://www.piotrbak.bio/assets/og-preview.png">
+<meta id="twitter-image-alt" name="twitter:image:alt" content="Artykuł na blogu Piotra Bąka.">
 
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/style.css?v=2.0">
