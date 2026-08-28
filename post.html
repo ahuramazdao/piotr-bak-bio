@@ -233,5 +233,14 @@
   <script src="js/blog-posts.js"></script>
   <script src="js/post.js"></script>
   <script src="js/main.js?v=2.0"></script>
+
+  <!-- Vercel Web Analytics — the plain-HTML variant: this site has no bundler,
+       so there is nothing for @vercel/analytics to be imported into. The queue
+       shim collects calls until script.js loads; /_vercel/insights is served by
+       Vercel itself and 404s in local development, which is expected. -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
