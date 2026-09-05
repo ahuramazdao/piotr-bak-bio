@@ -200,5 +200,15 @@
       "destination": "/post.html?post=airtable-prezentuje-cobuilder-czyli-najszybszy-sposob-na-tworzenie-aplikacji-bez-kodowania",
       "permanent": true
     }
+  ],
+  "headers": [
+    {
+      "source": "/piotr-bak.vcf",
+      "headers": [
+        { "key": "Content-Type", "value": "text/vcard; charset=utf-8" },
+        { "key": "Content-Disposition", "value": "inline; filename=\"piotr-bak.vcf\"" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
   ]
 }

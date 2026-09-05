@@ -336,6 +336,24 @@
     <!-- ============ CONTACT ============ -->
     <section class="section rise d4" data-screen-label="Kontakt">
       <p class="caption">Kontakt</p>
+      <!-- Electronic business card. The QR encodes the URL of piotr-bak.vcf
+           rather than the contact details themselves, so a code that has been
+           screenshotted or printed keeps working after the details change —
+           only the .vcf has to be edited. -->
+      <div class="card-vcard">
+        <a class="vcard-qr" href="piotr-bak.vcf" aria-label="Otwórz wizytówkę Piotra Bąka (plik vCard)">
+          <img src="assets/vcard-qr.svg" width="148" height="148"
+               alt="Kod QR prowadzący do wizytówki Piotra Bąka — zeskanuj telefonem, aby zapisać kontakt">
+        </a>
+        <div class="vcard-body">
+          <p class="caption">Wizytówka</p>
+          <h3>Dodaj mnie do kontaktów</h3>
+          <p>Zeskanuj kod telefonem albo kliknij przycisk — imię, telefon, e-mail i linki zapiszą się od razu w książce adresowej.</p>
+          <a class="btn-primary" href="piotr-bak.vcf">Dodaj do kontaktów <svg data-lucide="download"></svg></a>
+          <p class="vcard-hint">Plik .vcf · działa na iPhone i Androidzie</p>
+        </div>
+      </div>
+
       <form class="card-contact" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="82f56b91-1ee8-4a04-b6e3-b62db5cc3853">
         <input type="hidden" name="from_name" value="Piotr Bąk Bio">
