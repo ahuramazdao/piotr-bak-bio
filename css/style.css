@@ -138,8 +138,10 @@ body.motion-off .horizon { animation: none; }
   -webkit-mask-image: linear-gradient(to bottom, black 30px, transparent 84px);
   mask-image: linear-gradient(to bottom, black 30px, transparent 84px);
 }
+.hero .intro p { margin: 0; }
+.hero .intro p + p { margin-top: var(--s-3); }
 .intro-wrapper.expanded .intro {
-  max-height: 500px;
+  max-height: 700px;
   -webkit-mask-image: none;
   mask-image: none;
 }
